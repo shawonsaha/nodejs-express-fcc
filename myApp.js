@@ -30,16 +30,21 @@ var app = express();
 // })
 
 /** 6) Use the .env file to configure the app */
-app.get("/json", function(req, res) {
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({ message: "HELLO JSON" });
-  } else {
-    res.json({ message: "Hello json" });
-  }
-});
+// app.get("/json", function(req, res) {
+//   if (process.env.MESSAGE_STYLE === "uppercase") {
+//     res.json({ message: "HELLO JSON" });
+//   } else {
+//     res.json({ message: "Hello json" });
+//   }
+// });
 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
+app.use(function(req, res, next) {
+  // console.log("I'm a middleware...");
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next();
+});
 
 /** 8) Chaining middleware. A Time server */
 
