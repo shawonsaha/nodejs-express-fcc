@@ -40,13 +40,18 @@ var app = express();
 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
-app.use(function(req, res, next) {
-  // console.log("I'm a middleware...");
-  console.log(req.method + " " + req.path + " - " + req.ip);
-  next();
-});
+// app.use(function(req, res, next) {
+//   console.log(req.method + " " + req.path + " - " + req.ip);
+//   next();
+// });
 
 /** 8) Chaining middleware. A Time server */
+app.get('/now', function(req, res, next){
+  req.time = new Date().toString()
+  next()
+}, function(req, res){
+  res.send({time:req.time})
+})
 
 /** 9)  Get input from client - Route parameters */
 
