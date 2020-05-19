@@ -62,13 +62,18 @@ var bodyParser = require("body-parser");
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
-app.route("/name").get(function(req, res) {
-  var { first, last } = req.query;
-  res.send({ name: first + " " + last });
-});
+// app.route("/name").get(function(req, res) {
+//   var { first, last } = req.query;
+//   res.send({ name: first + " " + last });
+// });
 
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+
 
 /** 12) Get data form POST  */
 
